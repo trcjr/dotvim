@@ -1,0 +1,100 @@
+" pathgen
+silent! call pathogen#runtime_append_all_bundles()
+
+:set number
+:set nocompatible
+
+:highlight Pmenu ctermfg=1 ctermbg=4 guibg=grey30
+
+" font
+:set guifont=Menlo:h12
+
+" dots for tabs
+:set nolist
+:set listchars=trail:.,tab:__
+
+" Makes vim window remain after exit
+":set t_ti= t_te=
+
+:set laststatus=2 
+
+" Indent
+:set autoindent
+:set tabstop=3 "set tab character to 3 characters"
+:set shiftwidth=3 "indent width for autoindent"
+:set smartindent
+:syntax on
+
+" folding
+:set foldmethod=indent
+
+" Sidebar folder navigation
+:cabbr nt NERDTree
+:let NERDTreeShowBookmarks=1
+:let NERDTreeChDirMode=2
+
+" incremental search
+:set incsearch
+:set ignorecase
+:set smartcase
+
+" colors
+:set background=light
+colorscheme ir_black 
+
+" line tracking
+:set numberwidth=5 
+:set cursorline
+:hi CursorLine cterm=underline
+:set cursorcolumn
+
+"" shortcuts
+imap jj <Esc>l
+
+:let mapleader = ","
+:map <Leader>, :NERDTreeToggle<cr>
+:map <Leader>t :tabnew<cr>:NERDTreeMirror<cr>:NERDTreeToggle<cr>
+:map <Leader>h :tabprevious<cr>
+:map <Leader>l :tabnext<cr>
+:map <Leader>w :tabclose<cr>
+:map <Leader>f :TlistToggle<cr> 					" function list
+:map <Leader>p :!perldoc %<cr> 					" perldoc current file
+:map <Leader>M :!perl % daemon --reload<cr> 	" run Mojolicious::Lite app
+:map <Leader>x :!perl %<cr>						" perl execute current file
+" perldoc for module || perl command
+:noremap K :!perldoc <cword> <bar><bar> perldoc -f <cword><cr>
+
+" Opens nerdtree and puts focus in edited file
+:autocmd VimEnter * exe 'NERDTree' | wincmd l | exe 'NERDTreeToggle'
+
+
+
+
+" ,T perl tests
+function! Prove ( verbose, taint )
+    if ! exists("g:testfile")
+        let g:testfile = "t/*.t"
+    endif
+    if g:testfile == "t/*.t" || g:testfile =~ "\.t$"
+        let s:params = "lr"
+        if a:verbose
+            let s:params = s:params . "v"
+        endif
+"        if a:taint
+"            let s:params = s:params . "t"
+"        endif
+        execute "!HARNESS_PERL_SWITCHES=-MDevel::Cover prove -" . s:params . " " . g:testfile
+    else
+       call Compile ()
+    endif
+endfunction
+
+function! Compile ()
+    if ! exists("g:compilefile")
+        let g:compilefile = expand("%")
+    endif
+    execute "!perl -wc -Ilib " . g:compilefile
+endfunction
+
+nmap <Leader>T :let g:testfile = expand("%")<cr>:echo "testfile is now" g:testfile<cr>:call Prove (1,1)<cr>
+au BufRead,BufNewFile *.t setfiletype=perl
