@@ -7,7 +7,7 @@ silent! call pathogen#runtime_append_all_bundles()
 :highlight Pmenu ctermfg=1 ctermbg=4 guibg=grey30
 
 " font
-:set guifont=Menlo:h12
+:set guifont=Menlo\ bold:h12
 
 " dots for tabs
 :set nolist
