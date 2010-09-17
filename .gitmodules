@@ -4,3 +4,6 @@
 [submodule "bundle/snipmate"]
 	path = bundle/snipmate
 	url = http://github.com/msanders/snipmate.vim.git
+[submodule "bundle/perlomni"]
+	path = bundle/perlomni
+	url = http://github.com/c9s/perlomni.vim.git

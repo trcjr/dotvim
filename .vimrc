@@ -1,10 +1,10 @@
-" pathgen
+" pathgenj
 silent! call pathogen#runtime_append_all_bundles()
 
 :set number
 :set nocompatible
 
-:highlight Pmenu ctermfg=1 ctermbg=4 guibg=grey30
+:highlight Pmenu ctermfg=1 ctermbg=4 guibg=#ff0000
 
 " font
 :set guifont=Menlo\ bold:h12
@@ -15,6 +15,10 @@ silent! call pathogen#runtime_append_all_bundles()
 
 " Makes vim window remain after exit
 ":set t_ti= t_te=
+
+:filetype on
+:filetype plugin on
+:filetype indent on
 
 :set laststatus=2 
 
@@ -61,13 +65,13 @@ imap jj <Esc>l
 :map <Leader>p :!perldoc %<cr> 					" perldoc current file
 :map <Leader>M :!perl % daemon --reload<cr> 	" run Mojolicious::Lite app
 :map <Leader>x :!perl %<cr>						" perl execute current file
+:imap <Leader><Tab> <C-X><C-O>
+
 " perldoc for module || perl command
 :noremap K :!perldoc <cword> <bar><bar> perldoc -f <cword><cr>
 
 " Opens nerdtree and puts focus in edited file
 :autocmd VimEnter * exe 'NERDTree' | wincmd l | exe 'NERDTreeToggle'
-
-
 
 
 " ,T perl tests
