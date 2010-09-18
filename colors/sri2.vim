@@ -11,7 +11,8 @@ let colors_name = "sri"
 hi Visual guibg=#404040
 hi Cursor guibg=#b0d0f0
 
-hi Normal guifg=#fffedc guibg=#1a1a1a
+"hi Normal guifg=#fffedc guibg=#1a1a1a
+hi Normal guifg=#ffffff guibg=#1a1a1a
 hi Underlined guifg=#fffedc guibg=NONE gui=underline
 hi NonText guifg=#34383c guibg=NONE
 hi SpecialKey guifg=#303030 guibg=NONE
@@ -30,25 +31,28 @@ hi ModeMsg guifg=#fffedc guibg=NONE gui=NONE
 hi MoreMsg guifg=#fffedc guibg=NONE gui=NONE
 hi Question guifg=#fffedc guibg=NONE gui=NONE
 
-hi Comment guifg=#64686c gui=italic
+hi Comment guifg=#5F5A60 gui=italic
 hi String guifg=#a2a96f
 hi Number guifg=#a2a96f
 
 hi Keyword guifg=#ceb67f
-hi PreProc guifg=#8a9597
+hi PreProc guifg=#5F5A60 gui=italic
 hi Conditional guifg=#ceb67f
-
+hi Operator guifg=#ceb67f
 hi Todo guifg=#8a9597 gui=italic,bold
+"hi Constant guifg=#d08356
 hi Constant guifg=#d08356
 
-hi Identifier guifg=#8a9597
-hi Function guifg=#d08356
+"hi Identifier guifg=#8a9597
+hi Identifier guifg=#7283A1
+"hi Function guifg=#d08356
+hi Function guifg=#9b703f
 hi Type guifg=#e3d796 gui=bold
 hi Statement guifg=#ceb67f
 
 hi Special guifg=#c2c98f
 hi Delimiter guifg=#fffedc
-hi Operator guifg=#fffedc
+"hi Operator guifg=#fffff
 
 hi Title guifg=#d08356 gui=underline
 hi Repeat guifg=#ceb67f

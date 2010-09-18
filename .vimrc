@@ -1,71 +1,69 @@
-" pathgenj
+" pathgen
 silent! call pathogen#runtime_append_all_bundles()
 
 :set number
 :set nocompatible
 
-:highlight Pmenu ctermfg=1 ctermbg=4 guibg=#ff0000
-
 " font
-:set guifont=Menlo\ bold:h12
+set guifont=Menlo\ bold:h12
 
 " dots for tabs
-:set nolist
-:set listchars=trail:.,tab:__
+set nolist
+set listchars=trail:.,tab:__
 
-" Makes vim window remain after exit
-":set t_ti= t_te=
+" snipmate
+filetype on
+filetype plugin on
+filetype indent on
 
-:filetype on
-:filetype plugin on
-:filetype indent on
-
-:set laststatus=2 
+set laststatus=2 
 
 " Indent
-:set autoindent
-:set tabstop=3 "set tab character to 3 characters"
-:set shiftwidth=3 "indent width for autoindent"
-:set smartindent
+set autoindent
+set tabstop=3 "set tab character to 3 characters"
+set shiftwidth=3 "indent width for autoindent"
+set smartindent
 :syntax on
 
 " folding
-:set foldmethod=indent
+set foldmethod=indent
 
 " Sidebar folder navigation
-:cabbr nt NERDTree
-:let NERDTreeShowBookmarks=1
-:let NERDTreeChDirMode=2
+let NERDTreeShowBookmarks=1
+let NERDTreeChDirMode=2
 
 " incremental search
-:set incsearch
-:set ignorecase
-:set smartcase
+set incsearch
+set ignorecase
+set smartcase
 
 " colors
-:set background=light
-colorscheme ir_black 
+"set background=light
+colorscheme sri2
 
 " line tracking
-:set numberwidth=5 
-:set cursorline
-:hi CursorLine cterm=underline
-:set cursorcolumn
+set numberwidth=5 
+set cursorline
+set cursorcolumn
 
 "" shortcuts
 imap jj <Esc>l
 
-:let mapleader = ","
-:map <Leader>, :NERDTreeToggle<cr>
-:map <Leader>t :tabnew<cr>:NERDTreeMirror<cr>:NERDTreeToggle<cr>
-:map <Leader>h :tabprevious<cr>
-:map <Leader>l :tabnext<cr>
-:map <Leader>w :tabclose<cr>
-:map <Leader>f :TlistToggle<cr> 					" function list
-:map <Leader>p :!perldoc %<cr> 					" perldoc current file
-:map <Leader>M :!perl % daemon --reload<cr> 	" run Mojolicious::Lite app
-:map <Leader>x :!perl %<cr>						" perl execute current file
-:imap <Leader><Tab> <C-X><C-O>
+let mapleader = ","
+map <Leader>, :NERDTreeToggle<cr>
+map <Leader>t :tabnew<cr>:NERDTreeMirror<cr>:NERDTreeToggle<cr>
+map <Leader>h :tabprevious<cr>
+map <Leader>l :tabnext<cr>
+map <Leader>w :tabclose<cr>
+map <Leader>p :!perldoc %<cr>
+map <Leader>cs :colorscheme sri2<cr>
+" function list
+map <Leader>f :TlistToggle<cr>
+" run Mojolicious::Lite app
+map <Leader>M :!perl % daemon --reload<cr>
+" perl execute current file
+map <Leader>x :!perl %<cr>
+imap <Leader><Tab> <C-X><C-O>
 
 " perldoc for module || perl command
 :noremap K :!perldoc <cword> <bar><bar> perldoc -f <cword><cr>
@@ -101,4 +99,6 @@ function! Compile ()
 endfunction
 
 nmap <Leader>T :let g:testfile = expand("%")<cr>:echo "testfile is now" g:testfile<cr>:call Prove (1,1)<cr>
-au BufRead,BufNewFile *.t setfiletype=perl
+au BufRead,BufNewFile *.t set filetype=perl
+au BufRead,BufNewFile *.cgi set filetype=perl
+au BufRead,BufNewFile *.conf set filetype=apache

@@ -9,7 +9,8 @@ endif
 let colors_name = "sri"
 
 hi Visual guibg=#404040
-hi Cursor guibg=#b0d0f0
+"hi Cursor guibg=#b0d0f0
+hi Cursor           guifg=black       guibg=white       gui=NONE      ctermfg=black       ctermbg=white       cterm=reverse
 
 hi Normal guifg=#fffedc guibg=#1a1a1a
 hi Underlined guifg=#fffedc guibg=NONE gui=underline
