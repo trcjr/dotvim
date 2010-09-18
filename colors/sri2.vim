@@ -45,8 +45,7 @@ hi Constant guifg=#d08356
 
 "hi Identifier guifg=#8a9597
 hi Identifier guifg=#7283A1
-"hi Function guifg=#d08356
-hi Function guifg=#9b703f
+hi Function guifg=#d08356
 hi Type guifg=#e3d796 gui=bold
 hi Statement guifg=#ceb67f
 
@@ -60,3 +59,9 @@ hi Structure guifg=#ceb67f
 
 hi Directory guifg=#dad085
 hi Error guibg=#602020
+
+"More by glen
+hi CursorLine guibg=#121212 gui=underline
+hi CursorColumn guifg=NONE guibg=#000000
+hi Pmenu guifg=#f6f3e8 guibg=gray30
+hi PmenuSel guifg=#000000 guibg=#cae682

@@ -57,19 +57,17 @@ map <Leader>l :tabnext<cr>
 map <Leader>w :tabclose<cr>
 map <Leader>p :!perldoc %<cr>
 map <Leader>cs :colorscheme sri2<cr>
-" function list
 map <Leader>f :TlistToggle<cr>
-" run Mojolicious::Lite app
 map <Leader>M :!perl % daemon --reload<cr>
-" perl execute current file
 map <Leader>x :!perl %<cr>
+
+" autocompletion
 imap <Leader><Tab> <C-X><C-O>
 
 " perldoc for module || perl command
-:noremap K :!perldoc <cword> <bar><bar> perldoc -f <cword><cr>
-
+noremap K :!perldoc <cword> <bar><bar> perldoc -f <cword><cr>
 " Opens nerdtree and puts focus in edited file
-:autocmd VimEnter * exe 'NERDTree' | wincmd l | exe 'NERDTreeToggle'
+autocmd VimEnter * exe 'NERDTree' | wincmd l | exe 'NERDTreeToggle'
 
 
 " ,T perl tests
@@ -102,3 +100,8 @@ nmap <Leader>T :let g:testfile = expand("%")<cr>:echo "testfile is now" g:testfi
 au BufRead,BufNewFile *.t set filetype=perl
 au BufRead,BufNewFile *.cgi set filetype=perl
 au BufRead,BufNewFile *.conf set filetype=apache
+
+" perltidy
+autocmd BufRead,BufNewFile *.pl,*.plx,*.pm command! -range=% -nargs=* Tidy <line1>,<line2>!perltidy -q
+autocmd BufRead,BufNewFile *.pl,*.plx,*.pm noremap <Leader>pt :Tidy<CR>
+
