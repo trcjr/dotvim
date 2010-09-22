@@ -8,8 +8,8 @@ silent! call pathogen#runtime_append_all_bundles()
 set guifont=Menlo\ bold:h12
 
 " dots for tabs
-set nolist
-set listchars=trail:.,tab:__
+set list
+set listchars=tab:▸\ ,eol:¬
 
 " snipmate
 filetype on
@@ -23,7 +23,13 @@ set autoindent
 set tabstop=3 "set tab character to 3 characters"
 set shiftwidth=3 "indent width for autoindent"
 set smartindent
-:syntax on
+syntax on
+
+set textwidth=79
+set formatoptions=qrn1
+if version >= 703
+	set colorcolumn=80
+endif
 
 " folding
 set foldmethod=indent
@@ -47,9 +53,12 @@ set cursorline
 set cursorcolumn
 
 "" shortcuts
-imap jj <Esc>l
+inoremap jj <Esc>
+
+nnoremap ; :
 
 let mapleader = ","
+nnoremap <Leader>a :Ack 
 map <Leader>, :NERDTreeToggle<cr>
 map <Leader>t :tabnew<cr>:NERDTreeMirror<cr>:NERDTreeToggle<cr>
 map <Leader>h :tabprevious<cr>
@@ -96,11 +105,12 @@ function! Compile ()
     execute "!perl -wc -Ilib " . g:compilefile
 endfunction
 
-nmap <Leader>T :let g:testfile = expand("%")<cr>:echo "testfile is now" g:testfile<cr>:call Prove (1,1)<cr>
+"nmap <Leader>te :let g:testfile = expand("%")<cr>:echo "testfile is now" g:testfile<cr>:call Prove (1,1)<cr>
 au BufRead,BufNewFile *.t set filetype=perl
 au BufRead,BufNewFile *.cgi set filetype=perl
 au BufRead,BufNewFile *.conf set filetype=apache
 
 " perltidy
+autocmd BufRead,BufNewFile *.pl,*.plx,*.pm nmap <Leader>te :let g:testfile = expand("%")<cr>:echo "testfile is now" g:testfile<cr>:call Prove (1,1)<cr>
 autocmd BufRead,BufNewFile *.pl,*.plx,*.pm command! -range=% -nargs=* Tidy <line1>,<line2>!perltidy -q
 autocmd BufRead,BufNewFile *.pl,*.plx,*.pm noremap <Leader>pt :Tidy<CR>
