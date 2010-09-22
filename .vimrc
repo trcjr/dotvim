@@ -55,7 +55,7 @@ map <Leader>t :tabnew<cr>:NERDTreeMirror<cr>:NERDTreeToggle<cr>
 map <Leader>h :tabprevious<cr>
 map <Leader>l :tabnext<cr>
 map <Leader>w :tabclose<cr>
-map <Leader>p :!perldoc %<cr>
+map <Leader>pd :!perldoc %<cr>
 map <Leader>cs :colorscheme sri2<cr>
 map <Leader>f :TlistToggle<cr>
 map <Leader>M :!perl % daemon --reload<cr>
@@ -104,4 +104,3 @@ au BufRead,BufNewFile *.conf set filetype=apache
 " perltidy
 autocmd BufRead,BufNewFile *.pl,*.plx,*.pm command! -range=% -nargs=* Tidy <line1>,<line2>!perltidy -q
 autocmd BufRead,BufNewFile *.pl,*.plx,*.pm noremap <Leader>pt :Tidy<CR>
-
