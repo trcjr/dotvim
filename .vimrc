@@ -45,7 +45,13 @@ set smartcase
 
 " colors
 "set background=light
-colorscheme sri2
+
+if has("gui_macvim")
+	colorscheme sri2
+else
+	colorscheme ir_black
+endif
+
 
 " line tracking
 set numberwidth=5 
@@ -69,6 +75,7 @@ map <Leader>cs :colorscheme sri2<cr>
 map <Leader>f :TlistToggle<cr>
 map <Leader>M :!perl % daemon --reload<cr>
 map <Leader>x :!perl %<cr>
+map <leader><space> :CommandT<cr>
 
 " autocompletion
 imap <Leader><Tab> <C-X><C-O>
@@ -105,12 +112,11 @@ function! Compile ()
     execute "!perl -wc -Ilib " . g:compilefile
 endfunction
 
-"nmap <Leader>te :let g:testfile = expand("%")<cr>:echo "testfile is now" g:testfile<cr>:call Prove (1,1)<cr>
-au BufRead,BufNewFile *.t set filetype=perl
-au BufRead,BufNewFile *.cgi set filetype=perl
+nmap <Leader>te :let g:testfile = expand("%")<cr>:echo "testfile is now" g:testfile<cr>:call Prove (1,1)<cr>
+au BufRead,BufNewFile *.t,*.cgi set filetype=perl
 au BufRead,BufNewFile *.conf set filetype=apache
 
 " perltidy
-autocmd BufRead,BufNewFile *.pl,*.plx,*.pm nmap <Leader>te :let g:testfile = expand("%")<cr>:echo "testfile is now" g:testfile<cr>:call Prove (1,1)<cr>
-autocmd BufRead,BufNewFile *.pl,*.plx,*.pm command! -range=% -nargs=* Tidy <line1>,<line2>!perltidy -q
-autocmd BufRead,BufNewFile *.pl,*.plx,*.pm noremap <Leader>pt :Tidy<CR>
+autocmd BufRead,BufNewFile *.t,*.pl,*.plx,*.pm nmap <Leader>te :let g:testfile = expand("%")<cr>:echo "testfile is now" g:testfile<cr>:call Prove (1,1)<cr>
+autocmd BufRead,BufNewFile *.t,*.pl,*.plx,*.pm command! -range=% -nargs=* Tidy <line1>,<line2>!perltidy -q
+autocmd BufRead,BufNewFile *.t,*.pl,*.plx,*.pm noremap <Leader>pt :Tidy<CR>
