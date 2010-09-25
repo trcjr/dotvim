@@ -4,13 +4,6 @@ silent! call pathogen#runtime_append_all_bundles()
 :set number
 :set nocompatible
 
-" font
-set guifont=Menlo\ bold:h12
-
-" dots for tabs
-set list
-set listchars=tab:▸\ ,eol:¬
-
 " snipmate
 filetype on
 filetype plugin on
@@ -35,21 +28,30 @@ endif
 set foldmethod=indent
 
 " Sidebar folder navigation
+let NERDTreeShowLineNumbers=1
 let NERDTreeShowBookmarks=1
 let NERDTreeChDirMode=2
+let NERDTreeWinSize=41
 
 " incremental search
 set incsearch
 set ignorecase
 set smartcase
 
-" colors
-"set background=light
-
-if has("gui_macvim")
+if has("gui")
 	colorscheme sri2
+	set list
+	set listchars=tab:▸\ ,eol:¬
 else
+	set nolist
 	colorscheme ir_black
+endif
+
+" font
+if has("gui_gnome")
+	set guifont=Monospace:9
+elseif has("gui_macvim")
+	set guifont=Menlo\ bold:h12
 endif
 
 
@@ -66,16 +68,20 @@ nnoremap ; :
 let mapleader = ","
 nnoremap <Leader>a :Ack 
 map <Leader>, :NERDTreeToggle<cr>
-map <Leader>t :tabnew<cr>:NERDTreeMirror<cr>:NERDTreeToggle<cr>
+map <Leader>t :tabnew<cr>
 map <Leader>h :tabprevious<cr>
 map <Leader>l :tabnext<cr>
 map <Leader>w :tabclose<cr>
 map <Leader>pd :!perldoc %<cr>
-map <Leader>cs :colorscheme sri2<cr>
+map <Leader>cs :colorscheme 
 map <Leader>f :TlistToggle<cr>
 map <Leader>M :!perl % daemon --reload<cr>
 map <Leader>x :!perl %<cr>
 map <leader><space> :CommandT<cr>
+" cd to directory of current file
+map <leader>cd :cd %:p:h<cr>
+map <leader>F :NERDTreeFind<cr>
+map <leader>R :source ~/.vimrc<cr>
 
 " autocompletion
 imap <Leader><Tab> <C-X><C-O>
@@ -120,3 +126,7 @@ au BufRead,BufNewFile *.conf set filetype=apache
 autocmd BufRead,BufNewFile *.t,*.pl,*.plx,*.pm nmap <Leader>te :let g:testfile = expand("%")<cr>:echo "testfile is now" g:testfile<cr>:call Prove (1,1)<cr>
 autocmd BufRead,BufNewFile *.t,*.pl,*.plx,*.pm command! -range=% -nargs=* Tidy <line1>,<line2>!perltidy -q
 autocmd BufRead,BufNewFile *.t,*.pl,*.plx,*.pm noremap <Leader>pt :Tidy<CR>
+
+" save/retrieve folds automatically
+au BufWinLeave * silent! mkview
+au BufWinEnter * silent! loadview
