@@ -38,20 +38,21 @@ set incsearch
 set ignorecase
 set smartcase
 
-if has("gui")
-	colorscheme sri2
-	set list
-	set listchars=tab:▸\ ,eol:¬
-else
-	set nolist
-	colorscheme ir_black
-endif
+set list
+set listchars=tab:>\ 
+colorscheme ir_black
 
 " font
 if has("gui_gnome")
 	set guifont=Monospace:9
+	colorscheme sri2
+	set list
+	set listchars=tab:▸\ ,eol:¬
 elseif has("gui_macvim")
 	set guifont=Menlo\ bold:h12
+	colorscheme sri2
+	set list
+	set listchars=tab:▸\ ,eol:¬
 endif
 
 
