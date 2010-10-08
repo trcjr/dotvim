@@ -95,6 +95,12 @@ map <leader>cd :cd %:p:h<cr>
 map <leader>F :NERDTreeFind<cr>
 map <leader>R :source ~/.vimrc<cr>
 
+map <leader>pull :silent !sandbox pull %<cr>
+map <leader>push :silent !sandbox push %<cr>
+map <leader>same :!sandbox same %<cr>
+map <leader>rt :!sandbox rtest %<cr>
+map <leader>diff :!sandbox diff %<cr>
+
 " autocompletion
 imap <Leader><Tab> <C-X><C-O>
 
