@@ -1,8 +1,10 @@
 " pathogen
 silent! call pathogen#runtime_append_all_bundles()
 
-:set number
-:set nocompatible
+set number
+set nocompatible
+
+set wildignore+=*CVS
 
 " snipmate
 filetype on
@@ -32,6 +34,7 @@ let NERDTreeShowLineNumbers=1
 let NERDTreeShowBookmarks=1
 let NERDTreeChDirMode=2
 let NERDTreeWinSize=41
+let NERDTreeIgnore=['CVS']
 
 " incremental search
 set incsearch
@@ -40,7 +43,6 @@ set smartcase
 
 set list
 set listchars=tab:_\ 
-colorscheme ir_black
 
 " font
 if has("gui_gnome")
@@ -49,16 +51,21 @@ if has("gui_gnome")
 	set list
 	set listchars=tab:▸\ ,eol:¬
 	" hide toolbar
-	set go-=T
 elseif has("gui_macvim")
 	set guifont=Menlo\ bold:h12
 	colorscheme sri2
 	set list
 	set listchars=tab:▸\ ,eol:¬
 	" hide toolbar
-	set go-=T
 endif
 
+if has("gui_running")
+	set guioptions-=r
+	set go-=L
+	set go-=T
+else
+	colorscheme ir_black
+endif
 
 " line tracking
 set numberwidth=5
@@ -105,7 +112,7 @@ au BufWinLeave * silent! mkview
 au BufWinEnter * silent! loadview
 
 " ,T perl tests
-nmap <Leader>T :let g:testfile = expand("%")<cr>:echo "testfile is now" g:testfile<cr>:call Prove (1,1)<cr>
+"nmap <Leader>T :let g:testfile = expand("%")<cr>:echo "testfile is now" g:testfile<cr>:call Prove (1,1)<cr>
 function! Prove ( verbose, taint )
     if ! exists("g:testfile")
         let g:testfile = "t/*.t"
@@ -135,3 +142,39 @@ endfunction
 autocmd BufRead,BufNewFile *.t,*.pl,*.plx,*.pm nmap <Leader>te :let g:testfile = expand("%")<cr>:echo "testfile is now" g:testfile<cr>:call Prove (1,1)<cr>
 autocmd BufRead,BufNewFile *.t,*.pl,*.plx,*.pm command! -range=% -nargs=* Tidy <line1>,<line2>!perltidy -q
 autocmd BufRead,BufNewFile *.t,*.pl,*.plx,*.pm noremap <Leader>pt :Tidy<CR>
+
+
+"if has("gui_macvim")
+"	"Enable balloon tooltips on spelling suggestions and folds
+"	function! FoldSpellBalloon()
+"		let foldStart = foldclosed(v:beval_lnum)
+"		let foldEnd = foldclosedend(v:beval_lnum)
+"		let lines = []
+"		" Detect if we are in a fold
+"		if(foldStart < 0)
+"			" Detect if we are on a misspelled word
+"			let lines = spellsuggest( spellbadword(v:beval_text)[ 0 ], 5, 0 )
+"		else
+"			" we are in a fold
+"			let numLines = foldEnd - foldStart + 1
+"			" if we have too many lines in fold, show only the first 14
+"			" and the last 14 lines
+"			if(numLines > 31)
+"				let lines = getline(foldStart, foldStart + 14)
+"				let lines += [ '-- Snipped ' . (numLines - 30) . ' lines --' ]
+"				let lines += getline(foldEnd - 14, foldEnd)
+"			else
+"				"less than 30 lines, lets show all of them
+"				let lines = getline( foldStart, foldEnd )
+"			endif
+"		endif
+"		" return result
+"		return join( lines, has( "balloon_multiline" ) ? "\n" : " " )
+"	endfunction
+"
+"	set balloonexpr=FoldSpellBalloon()
+"	set ballooneval
+"
+"endif
+
+let g:ackprg="ack-grep -H --nocolor --nogroup --column"
