@@ -19,3 +19,15 @@
 [submodule "bundle/cocoa"]
 	path = bundle/cocoa
 	url = http://github.com/msanders/cocoa.vim.git
+[submodule "bundle/gundo.vim"]
+	path = bundle/gundo.vim
+	url = http://github.com/sjl/gundo.vim.git
+[submodule "bundle/gundo"]
+	path = bundle/gundo
+	url = http://github.com/sjl/gundo.vim.git
+[submodule "bundle/xmledit"]
+	path = bundle/xmledit
+	url = http://github.com/sukima/xmledit.git
+[submodule "bundle/xmlfolding"]
+	path = bundle/xmlfolding
+	url = http://github.com/fifigyuri/vim-xmlfolding.git
