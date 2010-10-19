@@ -42,7 +42,7 @@ set ignorecase
 set smartcase
 
 set list
-set listchars=tab:_\ 
+set listchars=tab:.\ 
 
 " font
 if has("gui_gnome")
@@ -85,7 +85,7 @@ map <Leader>h :tabprevious<cr>
 map <Leader>l :tabnext<cr>
 map <Leader>w :tabclose<cr>
 map <Leader>pd :!perldoc %<cr>
-map <Leader>cs :colorscheme 
+map <Leader>cs :colorscheme sri2<cr> 
 map <Leader>f :TlistToggle<cr>
 map <Leader>M :!perl % daemon --reload<cr>
 map <Leader>x :!perl %<cr>

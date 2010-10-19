@@ -17,8 +17,9 @@ hi Underlined guifg=#fffedc guibg=NONE gui=underline
 hi NonText guifg=#34383c guibg=NONE
 hi SpecialKey guifg=#303030 guibg=NONE
 hi LineNr guifg=#34383c guibg=NONE gui=NONE
-hi StatusLine guifg=#34383c guibg=NONE gui=NONE
-hi StatusLineNC guifg=#34383c guibg=NONE gui=NONE
+hi StatusLine guifg=black guibg=#666666 gui=NONE
+hi StatusLineNC guifg=#666666 guibg=#333333 gui=NONE
+"hi StatusLineNC guifg=#34383c guibg=#333333 gui=NONE
 hi VertSplit guifg=#303030 guibg=#303030 gui=NONE
 hi WildMenu guifg=#fffedc guibg=NONE gui=NONE
 hi Folded guifg=#8a9597 guibg=#34383c gui=NONE
