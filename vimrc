@@ -13,10 +13,14 @@ filetype indent on
 
 set laststatus=2 
 
+" backspaces over everything in insert mode
+set backspace=indent,eol,start
+
 " Indent
 set autoindent
 set tabstop=3 "set tab character to 3 characters"
 set shiftwidth=3 "indent width for autoindent"
+set smarttab " insert tabs on start of line according to shiftwidth, not tabstop
 set smartindent
 syntax on
 
@@ -36,30 +40,45 @@ let NERDTreeChDirMode=2
 let NERDTreeWinSize=41
 let NERDTreeIgnore=['CVS']
 
-" incremental search
+
 set incsearch
 set ignorecase
 set smartcase
+set visualbell
+set noerrorbells
+set hlsearch
+
+" clear recent search highlighting with space
+:nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
+
+
+" save files as root without prior sudo
+cmap w!! w !sudo tee % >/dev/null
+
+set nobackup
+set noswapfile
 
 set list
-set listchars=tab:.\ 
+set listchars=tab:.\ ,trail:.,extends:#,nbsp:.
 
 " font
 if has("gui_gnome")
-	set guifont=Monospace:9
+	set guifont=Monospace\ 8
 	colorscheme sri2
 	set list
-	set listchars=tab:▸\ ,eol:¬
+	set listchars=tab:▸\ ,eol:¬,extends:#,nbsp:.,trail:.
 	" hide toolbar
+
 elseif has("gui_macvim")
-	set guifont=Menlo\ bold:h12
+	set guifont=Menlo\ bold:h11
+	"set guifont=Menlo:h12
 	colorscheme sri2
 	set list
-	set listchars=tab:▸\ ,eol:¬
+	set listchars=tab:▸\ ,eol:¬,extends:#,nbsp:.,trail:.
 	" hide toolbar
 endif
 
-if has("gui_running")
+if &t_Co >= 256 || has("gui_running")
 	set guioptions-=r
 	set go-=L
 	set go-=T
@@ -85,10 +104,10 @@ map <Leader>h :tabprevious<cr>
 map <Leader>l :tabnext<cr>
 map <Leader>w :tabclose<cr>
 map <Leader>pd :!perldoc %<cr>
-map <Leader>cs :colorscheme sri2<cr> 
+map <Leader>cs :colorscheme sri2<cr>
 map <Leader>f :TlistToggle<cr>
 map <Leader>M :!perl % daemon --reload<cr>
-map <Leader>x :!perl %<cr>
+map <Leader>x :!perl -Ilib %<cr>
 map <leader><space> :CommandT<cr>
 " cd to directory of current file
 map <leader>cd :cd %:p:h<cr>
@@ -125,14 +144,16 @@ function! Prove ( verbose, taint )
         let g:testfile = "t/*.t"
     endif
     if g:testfile == "t/*.t" || g:testfile =~ "\.t$"
-        let s:params = "lr"
+        let s:params = "lrc"
         if a:verbose
             let s:params = s:params . "v"
         endif
 "        if a:taint
 "            let s:params = s:params . "t"
 "        endif
-        execute "!HARNESS_PERL_SWITCHES=-MDevel::Cover prove -" . s:params . " " . g:testfile
+        "execute !HARNESS_PERL_SWITCHES=-MDevel::Cover prove -" . s:params . " " . g:testfile
+        execute "!prove --timer --normalize --state=save -" . s:params . " " . g:testfile
+		  "TEST_VERBOSE=1 prove -lvc --timer --normalize --state=save
     else
        call Compile ()
     endif
@@ -150,7 +171,14 @@ autocmd BufRead,BufNewFile *.t,*.pl,*.plx,*.pm nmap <Leader>te :let g:testfile =
 autocmd BufRead,BufNewFile *.t,*.pl,*.plx,*.pm command! -range=% -nargs=* Tidy <line1>,<line2>!perltidy -q
 autocmd BufRead,BufNewFile *.t,*.pl,*.plx,*.pm noremap <Leader>pt :Tidy<CR>
 
+" python does not like tabs
+autocmd filetype python set expandtab
+
 " xmlfolding
-au BufNewFile,BufRead *.xml,*.htm,*.html so ~/.vim/bundle/plugin/XMLFolding.vim
+au BufNewFile,BufRead *.xml,*.htm,*.html so bundle/plugin/XMLFolding.vim
+
+autocmd FileType perl syn include @perlDATA bundle/mojo/syntax/MojoliciousTemplate.vim
 
 let g:ackprg="ack-grep -H --nocolor --nogroup --column"
+
+au! Syntax newlang source $VIM/syntax/nt.vim

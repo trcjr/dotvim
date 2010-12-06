@@ -11,8 +11,9 @@ let colors_name = "sri"
 hi Visual guibg=#404040
 hi Cursor guibg=#b0d0f0
 
+hi Normal guifg=#fffedc guibg=#1a1a1a
 "hi Normal guifg=#fffedc guibg=#1a1a1a
-hi Normal guifg=#ffffff guibg=#1a1a1a
+"hi Normal guifg=#ffffff guibg=#111111
 hi Underlined guifg=#fffedc guibg=NONE gui=underline
 hi NonText guifg=#34383c guibg=NONE
 hi SpecialKey guifg=#303030 guibg=NONE
@@ -62,7 +63,8 @@ hi Directory guifg=#dad085
 hi Error guibg=#602020
 
 "More by glen
-hi CursorLine guibg=#121212 gui=underline
-hi CursorColumn guifg=NONE guibg=#000000
+"hi CursorLine guibg=#121212 gui=underline
+hi CursorLine guifg=NONE guibg=#000000 gui=none
+hi CursorColumn guifg=NONE guibg=#000000 gui=none
 hi Pmenu guifg=#f6f3e8 guibg=gray30
 hi PmenuSel guifg=#000000 guibg=#cae682
