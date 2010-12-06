@@ -4,9 +4,6 @@
 [submodule "bundle/snipmate"]
 	path = bundle/snipmate
 	url = http://github.com/msanders/snipmate.vim.git
-[submodule "bundle/perlomni"]
-	path = bundle/perlomni
-	url = http://github.com/c9s/perlomni.vim.git
 [submodule "bundle/vim-perl"]
 	path = bundle/vim-perl
 	url = http://github.com/petdance/vim-perl.git
@@ -16,12 +13,6 @@
 [submodule "bundle/command-t"]
 	path = bundle/command-t
 	url = http://github.com/wincent/Command-T.git
-[submodule "bundle/cocoa"]
-	path = bundle/cocoa
-	url = http://github.com/msanders/cocoa.vim.git
-[submodule "bundle/gundo.vim"]
-	path = bundle/gundo.vim
-	url = http://github.com/sjl/gundo.vim.git
 [submodule "bundle/gundo"]
 	path = bundle/gundo
 	url = http://github.com/sjl/gundo.vim.git
@@ -31,3 +22,6 @@
 [submodule "bundle/xmlfolding"]
 	path = bundle/xmlfolding
 	url = http://github.com/fifigyuri/vim-xmlfolding.git
+[submodule "bundle/perlomni.vim"]
+	path = bundle/perlomni.vim
+	url = https://github.com/c9s/perlomni.vim.git

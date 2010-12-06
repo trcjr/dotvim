@@ -174,6 +174,9 @@ autocmd BufRead,BufNewFile *.t,*.pl,*.plx,*.pm noremap <Leader>pt :Tidy<CR>
 " python does not like tabs
 autocmd filetype python set expandtab
 
+" perl omnicompletion
+autocmd FileType perl set omnifunc=perlcomplete#Complete
+
 " xmlfolding
 au BufNewFile,BufRead *.xml,*.htm,*.html so bundle/plugin/XMLFolding.vim
 
