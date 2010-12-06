@@ -70,8 +70,8 @@ if has("gui_gnome")
 	" hide toolbar
 
 elseif has("gui_macvim")
-	set guifont=Menlo\ bold:h11
-	"set guifont=Menlo:h12
+	"set guifont=Menlo\ bold:h11
+	set guifont=Menlo:h11
 	colorscheme sri2
 	set list
 	set listchars=tab:▸\ ,eol:¬,extends:#,nbsp:.,trail:.
@@ -109,6 +109,7 @@ map <Leader>f :TlistToggle<cr>
 map <Leader>M :!perl % daemon --reload<cr>
 map <Leader>x :!perl -Ilib %<cr>
 map <leader><space> :CommandT<cr>
+map <leader>H :call HexHighlight()<cr>
 " cd to directory of current file
 map <leader>cd :cd %:p:h<cr>
 map <leader>F :NERDTreeFind<cr>
@@ -120,6 +121,19 @@ map <leader>same :!sandbox same %<cr>
 map <leader>rt :!sandbox rtest %<cr>
 map <leader>diff :!sandbox diff %<cr>
 nnoremap <F5> :GundoToggle<cr>
+
+
+" Move single lines up-down
+"nmap <c-up> ddkP
+"nmap <c-down> ddp
+nmap <c-up [e
+nmap <c-down> ]e
+
+" Move multiple lines up-down
+"vmap <c-up> xkP`[V`]
+"vmap <c-down> xp`[V`]
+vmap <c-up> [egv
+vmap <c-down> ]egv
 
 " autocompletion
 imap <Leader><Tab> <C-X><C-O>
@@ -174,14 +188,25 @@ autocmd BufRead,BufNewFile *.t,*.pl,*.plx,*.pm noremap <Leader>pt :Tidy<CR>
 " python does not like tabs
 autocmd filetype python set expandtab
 
-" perl omnicompletion
-autocmd FileType perl set omnifunc=perlcomplete#Complete
-
 " xmlfolding
 au BufNewFile,BufRead *.xml,*.htm,*.html so bundle/plugin/XMLFolding.vim
 
+" mojolicious templates
 autocmd FileType perl syn include @perlDATA bundle/mojo/syntax/MojoliciousTemplate.vim
 
+" ack shortcut
 let g:ackprg="ack-grep -H --nocolor --nogroup --column"
 
+" who put this in?
 au! Syntax newlang source $VIM/syntax/nt.vim
+
+" Show syntax highlighting groups for word under cursor
+nmap <C-S-P> :call <SID>SynStack()<CR>
+function! <SID>SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
+
+source ~/.vim/plugins/hexHighlight.vim

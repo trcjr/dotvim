@@ -25,3 +25,6 @@
 [submodule "bundle/perlomni.vim"]
 	path = bundle/perlomni.vim
 	url = https://github.com/c9s/perlomni.vim.git
+[submodule "bundle/vunimpaired"]
+	path = bundle/vunimpaired
+	url = https://github.com/tpope/vim-unimpaired.git
