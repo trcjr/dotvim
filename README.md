@@ -1,5 +1,3 @@
-git://github.com/tempire/dotvim.git
-
 ## Requirements
 - Ruby 1.8.7
 - Ruby rake compiler
@@ -10,10 +8,10 @@ git://github.com/tempire/dotvim.git
 
 ## Install
 
-git clone git://github.com/tempire/dotvim.git .vim
-cd .vim
-git submodule init
-git submodule update
-
-cd bundle/command-t
-rake make # requires ruby gems
+   git clone git://github.com/tempire/dotvim.git .vim
+   cd .vim
+   git submodule init
+   git submodule update
+   
+   cd bundle/command-t
+   rake make # requires ruby gems
