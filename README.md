@@ -15,3 +15,5 @@
     
     cd bundle/command-t
     rake make # requires ruby gems
+
+	 ln -s ~/.vim/vimrc ~/.vimrc
