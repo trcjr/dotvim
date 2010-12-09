@@ -193,7 +193,7 @@ autocmd filetype python set expandtab
 au BufNewFile,BufRead *.xml,*.htm,*.html so bundle/plugin/XMLFolding.vim
 
 " mojolicious templates
-"autocmd FileType perl syn include @perlDATA bundle/mojo/syntax/MojoliciousTemplate.vim
+autocmd FileType perl syn include @perlDATA bundle/mojo/syntax/MojoliciousTemplate.vim
 
 " ack shortcut
 let g:ackprg="ack-grep -H --nocolor --nogroup --column"
