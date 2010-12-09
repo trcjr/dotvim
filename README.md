@@ -12,8 +12,8 @@
     cd .vim
     git submodule init
     git submodule update
-    
+
     cd bundle/command-t
     rake make # requires ruby gems
 
-	 ln -s ~/.vim/vimrc ~/.vimrc
+    ln -s ~/.vim/vimrc ~/.vimrc
