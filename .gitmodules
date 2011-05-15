@@ -34,3 +34,6 @@
 [submodule "bundle/autocomplpop"]
 	path = bundle/autocomplpop
 	url = git://github.com/vim-scripts/AutoComplPop.git
+[submodule "bundle/gundo"]
+	path = bundle/gundo
+	url = http://github.com/sjl/gundo.vim.git
