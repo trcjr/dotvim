@@ -17,3 +17,6 @@
     rake make # requires ruby gems
 
     ln -s ~/.vim/vimrc ~/.vimrc
+
+## Personal Customizations
+    Put your personal customizations in ~/.vim/vimrc.$(whoami). ~/.vim/vimrc.$(whoami) will be the last thing loaded.
