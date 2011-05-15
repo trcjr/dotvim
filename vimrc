@@ -159,6 +159,7 @@ map <leader>same :!sandbox same %<cr>
 map <leader>rt :!sandbox rtest %<cr>
 map <leader>diff :!sandbox diff %<cr>
 nnoremap <F5> :GundoToggle<cr>
+noremap  <leader>gu :GundoToggle<cr>
 
 
 " Move single lines up-down
