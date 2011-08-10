@@ -1,0 +1,12 @@
+if version >= 703
+	set colorcolumn=80
+endif
+
+if &t_Co >= 256 || has("gui_running")
+	colorscheme sri
+	set guioptions-=r
+	set go-=L
+	set go-=T
+else
+	colorscheme ir_black
+endif
