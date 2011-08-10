@@ -1,1 +1,25 @@
-colorscheme jellybeans
+if &t_Co >= 256 || has("gui_running")
+    colorscheme jellybeans
+	"colorscheme sri
+	set guioptions-=r
+	set go-=L
+	set go-=T
+else
+	colorscheme default
+    set bg=dark
+endif
+
+set colorcolumn=0
+set nocursorline
+set nocursorcolumn
+
+highlight Cursor guifg=white guibg=black
+highlight iCursor guifg=white guibg=steelblue
+set guicursor=n-v-c:block-Cursor
+set guicursor+=i:ver100-iCursor
+set guicursor+=n-v-c:blinkon0
+set guicursor+=i:blinkwait10
+:silent !echo -ne "\033]12;red\007"
+let &t_SI = "\033]12;orange\007"
+let &t_EI = "\033]12;red\007"
+autocmd VimLeave * :!echo -ne "\033]12;red\007"

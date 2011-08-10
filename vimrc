@@ -1,9 +1,3 @@
-" Use our user unless we have a sudo user, then is it
-let luser = substitute(system('whoami'), '\n', '', '')
-if strlen($SUDO_USER)
-    let luser = $SUDO_USER
-endif
-
 " pathogen
 silent! call pathogen#runtime_append_all_bundles()
 silent! call pathogen#helptags()
@@ -37,9 +31,6 @@ syntax on
 
 set textwidth=79
 set formatoptions=qrn1
-if version >= 703
-	set colorcolumn=80
-endif
 
 " folding
 set foldmethod=indent
@@ -111,15 +102,6 @@ elseif has("gui_macvim")
 	"set guifont=Menlo:h11
 	set list
 	set listchars=tab:▸\ ,eol:¬,extends:#,nbsp:.,trail:.
-endif
-
-if &t_Co >= 256 || has("gui_running")
-	colorscheme sri
-	set guioptions-=r
-	set go-=L
-	set go-=T
-else
-	colorscheme ir_black
 endif
 
 " line tracking
@@ -237,7 +219,7 @@ au BufNewFile,BufRead *.xml,*.htm,*.html so bundle/plugin/XMLFolding.vim
 let g:ackprg="ack-grep -H --nocolor --nogroup --column"
 
 " who put this in?
-au! Syntax newlang source $VIM/syntax/nt.vim
+"au! Syntax newlang source $VIM/syntax/nt.vim
 
 " Show syntax highlighting groups for word under cursor
 nmap <C-S-P> :call <SID>SynStack()<CR>
@@ -287,3 +269,9 @@ function! StatuslineCurrentHighlight()
         return '[' . name . ']'
     endif
 endfunction
+
+" Use our user unless we have a sudo user, then is it
+let luser = substitute(system('whoami'), '\n', '', '')
+if strlen($SUDO_USER)
+    let luser = $SUDO_USER
+endif
