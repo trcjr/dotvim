@@ -52,3 +52,6 @@
 [submodule "bundle/inkpot"]
 	path = bundle/inkpot
 	url = git://github.com/ciaranm/inkpot.git
+[submodule "bundle/vimoutliner"]
+	path = bundle/vimoutliner
+	url = git@github.com:trcjr/vimoutliner.git
