@@ -61,3 +61,9 @@
 [submodule "bundle/jellybeans.vim"]
 	path = bundle/jellybeans.vim
 	url = https://github.com/nanotech/jellybeans.vim.git
+[submodule "bundle/vim-colorschcme-scroller"]
+	path = bundle/vim-colorschcme-scroller
+	url = https://github.com/rom399/vim-colorsheme-scroller.git
+[submodule "bundle/csapprox"]
+	path = bundle/csapprox
+	url = https://github.com/godlygeek/csapprox.git
