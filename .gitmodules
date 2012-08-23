@@ -55,9 +55,9 @@
 [submodule "bundle/vimoutliner"]
 	path = bundle/vimoutliner
 	url = git@github.com:trcjr/vimoutliner.git
-[submodule "bundle/jellybeans.vim"]
-	path = bundle/jellybeans.vim
-	url = https://github.com/nanotech/jellybeans.vim.git
 [submodule "bundle/Color-Sampler-Pack"]
 	path = bundle/Color-Sampler-Pack
 	url = https://github.com/vim-scripts/Color-Sampler-Pack.git
+[submodule "bundle/jellybeans.vim"]
+	path = bundle/jellybeans.vim
+	url = https://github.com/nanotech/jellybeans.vim.git
