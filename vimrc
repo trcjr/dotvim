@@ -46,6 +46,7 @@ let NERDTreeShowBookmarks=1
 let NERDTreeChDirMode=2
 let NERDTreeWinSize=41
 let NERDTreeIgnore=['CVS']
+let g:NERDTreeDirArrows=0
 
 let mojo_highlight_data = 1
 
